@@ -3,3 +3,4 @@ venv/
 .idea/
 *.py[co]
 __pycache__
+test.py
