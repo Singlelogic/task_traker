@@ -26,9 +26,10 @@ class Task:
         conn.close()
 
     @classmethod
-    def find_task(cls, date: str = '') -> list:
+    def find_task(cls, date: str = '', done: str = 'no') -> list:
         """To find the tasks from the database.
 
+        Incomplete tasks are selected by default.
         If a date is specified, it returns data for that date.
         If no date is specified, it returns all tasks.
         """
@@ -36,9 +37,9 @@ class Task:
         cur = conn.cursor()
 
         if date:
-            query_select = f"SELECT * FROM {cls.__tablename__} WHERE date='{date}'"
+            query_select = f"SELECT * FROM {cls.__tablename__} WHERE date='{date}' and done='{done}'"
         else:
-            query_select = f"SELECT * FROM {cls.__tablename__}"
+            query_select = f"SELECT * FROM {cls.__tablename__} WHERE done='{done}'"
         tasks = []
         for row in cur.execute(query_select):
             tasks.append(cls(row[1], row[2], row[3]))

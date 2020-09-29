@@ -1,38 +1,28 @@
 from model.task import Task
 
 
-# task1 = Task('2020-09-17', 'First_task')
-# task1.save()
-#
-# task2 = Task('2020-09-17', 'Second_task')
-# task2.save()
-#
-# task3 = Task('2020-09-18', 'Third_task')
-# task3.save()
-#
-# task4 = Task('2020-09-17', 'Fourth_task')
-# task4.save()
+print("Enter 'StartApp' to start working with the task tracker:")
 
+command = input('> ')
 
-all_tasks = Task.find_task()
-for task in all_tasks:
-    print(task)
+if command == 'StartApp':
+    print("Welcome to the task tracker!\nEnter 'Quit' to quit the task tracker. "
+          "For help enter 'Help'.")
+    while command[0] != 'Quit':
+        command = input('> ')
+        command = command.strip().split()
 
-print("##########################################")
-task = Task.find_task("2020-09-18")
-for task in task:
-    print(task)
+        if command[0] == 'Help':
+            print("Date format: YYYY-MM-DD")
+            print("Options are:")
+            print("   Add Date Task  - Add event.")
+            print("   Del Date Event - Delete event")
+            print("   Del Date       - Delete all events for a specific date")
+            print("   Find Date      - Search for events for a specific date")
+            print("   Print          - Print all events for all dates")
+            print("   StartApp       - Command to start working with the task tracker")
+            print("   Quit           - Сommand to exit the task tracker")
 
-Task.change_status_task('2020-09-17', 'First_task')
-
-print("##########################################")
-all_tasks = Task.find_task()
-for task in all_tasks:
-    print(task)
-
-Task.change_status_task('2020-09-17')
-
-print("##########################################")
-all_tasks = Task.find_task()
-for task in all_tasks:
-    print(task)
+        elif command[0] == 'Add':
+            task = Task(command[1], ' '.join(command[2:]))
+            task.save()
