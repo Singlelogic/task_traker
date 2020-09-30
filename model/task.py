@@ -66,3 +66,16 @@ class Task:
 
         conn.commit()
         conn.close()
+
+    @classmethod
+    def is_exist_task(cls, date: str, event: str) -> bool:
+        """Check if a task exists on a given date in the database."""
+        conn = sqlite3.connect('db.sqlite3')
+        cur = conn.cursor()
+
+        exist = False
+        query_select = f"SELECT * FROM {cls.__tablename__} WHERE date='{date}' and task='{event}'"
+        for row in cur.execute(query_select):
+            exist = True
+        conn.close()
+        return exist

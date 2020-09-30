@@ -17,9 +17,12 @@ def add_task(command):
     if len(command) >= 3:
         if validate_date(command[1]):
             event = ' '.join(command[2:])
-            newtask = Task(command[1], event)
-            newtask.save()
-            return "Task added successfully."
+            if not Task.is_exist_task(command[1], event):
+                newtask = Task(command[1], event)
+                newtask.save()
+                return "Task added successfully."
+            else:
+                return "This task already exists in the database."
         else:
             return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
     else:
