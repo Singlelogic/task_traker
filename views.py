@@ -29,6 +29,11 @@ def add_task(command):
         return "Incorrect command entered. Try again."
 
 def del_task(command):
+    """A function to mark a task as completed.
+
+    If no specific task is specified, all tasks for the specified date
+    are marked as completed.
+    """
     if len(command) >= 2:
         if validate_date(command[1]):
             if len(command) > 2:
