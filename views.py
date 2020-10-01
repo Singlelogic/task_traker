@@ -52,7 +52,11 @@ def del_task(command):
             else:
                 amount_task_found = len(Task.find_task(command[1]))
                 Task.change_status_task(command[1])
-                return f"Deleted {amount_task_found} events"
+                if amount_task_found > 1:
+                    end_word_event = 's'
+                else:
+                    end_word_event = ''
+                return f"Deleted {amount_task_found} event{end_word_event}"
         else:
             return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
     else:
