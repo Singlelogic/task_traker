@@ -14,6 +14,10 @@ class Task:
     def __str__(self):
         return f"Date: {self.__date} - {self.__event}; Done: {self.__done}"
 
+    def get_date(self):
+        """Get attribute value 'date'."""
+        return self.__date
+
     def get_event(self):
         """Get attribute value 'event'."""
         return self.__event

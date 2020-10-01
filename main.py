@@ -1,5 +1,5 @@
 from views import (
-    add_task, help_task, quit_task, del_task, find_task,
+    add_task, help_task, quit_task, del_task, find_task, print_task
 )
 
 
@@ -26,6 +26,9 @@ while command != 'Quit':
 
                 elif command[0] == 'Find':
                     print(find_task(command))
+
+                elif command[0] == 'Print':
+                    print(print_task(command))
 
                 elif command[0] == 'Quit':
                     print(quit_task())
