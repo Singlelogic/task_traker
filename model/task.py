@@ -14,6 +14,10 @@ class Task:
     def __str__(self):
         return f"Date: {self.__date} - {self.__event}; Done: {self.__done}"
 
+    def get_event(self):
+        """Get attribute value 'event'."""
+        return self.__event
+
     def save(self) -> None:
         """Method for saving an object in the database"""
         conn = sqlite3.connect('db.sqlite3')
@@ -32,6 +36,8 @@ class Task:
         Incomplete tasks are selected by default.
         If a date is specified, it returns data for that date.
         If no date is specified, it returns all tasks.
+
+        Returns a list of objects of class 'Tasks'.
         """
         conn = sqlite3.connect('db.sqlite3')
         cur = conn.cursor()

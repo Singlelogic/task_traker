@@ -62,6 +62,23 @@ def del_task(command):
     else:
         return "Incorrect command entered. Try again."
 
+def find_task(command):
+    """This function displays all outstanding tasks for the specified date."""
+    if len(command) == 2:
+        if validate_date(command[1]):
+            tasks_from_db = Task.find_task(command[1])
+            tasks = []
+            for task in tasks_from_db:
+                tasks.append(task.get_event())
+            if tasks:
+                return '\n'.join(sorted(tasks))
+            else:
+                return "No events found for this date."
+
+        return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
+    else:
+        return "Incorrect command entered. Try again."
+
 def quit_task():
     """This function returns a message when the task tracker is finished."""
     message = """The task tracker has ended. To re-enter, enter 'StartApp'.\nTo exit the program, enter 'Quit'."""
