@@ -2,6 +2,7 @@ from model.task import Task
 
 
 def help_task():
+    """This function returns a list of available task tracker commands."""
     message = """Date format: YYYY-MM-DD\nOptions are: 
         Add Date Task  - Add event
         Del Date Event - Delete event
@@ -14,6 +15,11 @@ def help_task():
     return message
 
 def add_task(command):
+    """Add a new task.
+
+    If the same task already exists on this date, the answer is returned that
+    this task already exists in the database.
+    """
     if len(command) >= 3:
         if validate_date(command[1]):
             event = ' '.join(command[2:])
@@ -53,6 +59,7 @@ def del_task(command):
         return "Incorrect command entered. Try again."
 
 def quit_task():
+    """This function returns a message when the task tracker is finished."""
     message = """The task tracker has ended. To re-enter, enter 'StartApp'.\nTo exit the program, enter 'Quit'."""
     return message
 
