@@ -11,8 +11,7 @@ def help_task():
         Find Date      - Search for events for a specific date
         Print          - Print all events for all dates
         StartApp       - Command to start working with the task tracker
-        Quit           - Сommand to exit the task tracker
-        """
+        Quit           - Сommand to exit the task tracker"""
     return message
 
 def add_task(command):
