@@ -1,4 +1,4 @@
-from views import (
+from views.commands import (
     add_task, help_task, quit_task, del_task, find_task, print_task
 )
 
