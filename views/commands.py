@@ -85,7 +85,11 @@ def find_task(command):
 def print_task(command):
     """Returns all unfinished tasks for all dates."""
     if len(command) == 1:
-        return Task.formatted_tasks_output()
+        tasks = Task.formatted_tasks_output()
+        if tasks:
+            return tasks
+        else:
+            return "Incomplete tasks not found"
     else:
         return "Incorrect command entered. Try again."
 

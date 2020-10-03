@@ -6,14 +6,22 @@ def show_current():
     """The method returns a formatted string of not completed tasks,
     in the date: task format, one event per line.
     """
-    return Task.formatted_tasks_output()
+    tasks = Task.formatted_tasks_output()
+    if tasks:
+        return tasks
+    else:
+        return "Incomplete tasks not found"
 
 
 def show_done():
     """The method returns a formatted string of completed tasks,
     in the date: task format, one event per line
     """
-    return Task.formatted_tasks_output(done='yes')
+    tasks = Task.formatted_tasks_output(done='yes')
+    if tasks:
+        return tasks
+    else:
+        return "Complete tasks not found"
 
 
 def path_database():
