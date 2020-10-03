@@ -17,7 +17,7 @@ if parser.parse_args().show_current:
 elif parser.parse_args().show_done:
     print(show_done())
 elif parser.parse_args().database:
-    path_database()
+    print(path_database())
 # Task tracker commands
 else:
     command = ''
