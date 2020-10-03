@@ -10,7 +10,7 @@ def help_task():
         Find Date      - Search for events for a specific date
         Print          - Print all events for all dates
         StartApp       - Command to start working with the task tracker
-        Quit           - Сommand to exit the task tracker"""
+        Quit           - Command to exit the task tracker"""
     return message
 
 
@@ -24,8 +24,8 @@ def add_task(command):
         if validate_date(command[1]):
             event = ' '.join(command[2:])
             if not Task.is_exist_task(command[1], event):
-                newtask = Task(command[1], event)
-                newtask.save()
+                new_task = Task(command[1], event)
+                new_task.save()
                 return "Task added successfully."
             else:
                 return "This task already exists in the database."

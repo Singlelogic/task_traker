@@ -4,7 +4,8 @@ from collections import defaultdict
 
 class Task:
     """This class is used for adding tasks, changing their state,
-    and searching for."""
+    and searching for.
+    """
     __tablename__ = 'tasks'
 
     def __init__(self, date: str, event: str, done: str = 'no'):
@@ -24,7 +25,7 @@ class Task:
         return self.__event
 
     def save(self) -> None:
-        """Method for saving an object in the database"""
+        """Method for saving an object in the database."""
         conn = sqlite3.connect('db.sqlite3')
         cur = conn.cursor()
 

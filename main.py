@@ -29,8 +29,8 @@ else:
         if command == 'StartApp':
             print("Welcome to the task tracker!\nEnter 'Quit' to quit the task tracker. "
                   "For help enter 'Help'.")
-            exit = False
-            while not exit:
+            _exit = False
+            while not _exit:
                 commands = input('> ').strip().split('\n')
                 for command in commands:
                     command = command.split()
@@ -52,7 +52,7 @@ else:
 
                         elif command[0] == 'Quit':
                             print(quit_task())
-                            exit = True
+                            _exit = True
 
-                    if exit:
+                    if _exit:
                         break
