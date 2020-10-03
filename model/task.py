@@ -1,4 +1,5 @@
 import sqlite3
+from collections import defaultdict
 
 
 class Task:
@@ -89,3 +90,21 @@ class Task:
             exist = True
         conn.close()
         return exist
+
+    @classmethod
+    def formatted_tasks_output(cls, done: str = 'no') -> str:
+        """The method returns a formatted string of date events, one event per line.
+
+        Returns all uncompleted tasks by default.
+        """
+        tasks_from_db = cls.find_task(done=done)
+        tasks = defaultdict(list)
+        for task_object in tasks_from_db:
+            tasks[task_object.get_date()].append(task_object.get_event())
+
+        # Formation of a string to display each event with a date.
+        response_form = ''
+        for date in tasks:
+            for task in sorted(tasks[date]):
+                response_form += f"{date}: {task}\n"
+        return response_form.rstrip()

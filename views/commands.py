@@ -82,17 +82,7 @@ def find_task(command):
 def print_task(command):
     """Returns all unfinished tasks for all dates."""
     if len(command) == 1:
-        tasks_from_db = Task.find_task()
-        tasks = defaultdict(list)
-        for task_object in tasks_from_db:
-            tasks[task_object.get_date()].append(task_object.get_event())
-
-        # Formation of a string to display each event with a date.
-        response_form = ''
-        for date in tasks:
-            for task in sorted(tasks[date]):
-                response_form += f"{date}: {task}\n"
-        return response_form.rstrip()
+        return Task.formatted_tasks_output()
     else:
         return "Incorrect command entered. Try again."
 
