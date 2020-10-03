@@ -1,7 +1,5 @@
 import unittest
-from views import (
-    validate_date,
-)
+from views.commands import validate_date
 
 
 class TestViews(unittest.TestCase):

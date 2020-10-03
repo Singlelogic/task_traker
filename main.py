@@ -1,11 +1,9 @@
 import argparse
-from views.cli import show_current, show_done, path_database
+from views.cli import path_database, show_current, show_done
 from views.commands import (
-    add_task, help_task, quit_task, del_task, find_task, print_task
+    add_task, del_task, find_task, help_task, print_task, quit_task
 )
-from views.cli import (
-    show_current,
-)
+
 
 parser = argparse.ArgumentParser()
 

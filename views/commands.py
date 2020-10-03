@@ -1,10 +1,9 @@
-from collections import defaultdict
 from model.task import Task
 
 
 def help_task():
     """This function returns a list of available task tracker commands."""
-    message = """Date format: YYYY-MM-DD\nOptions are: 
+    message = """Date format: YYYY-MM-DD\nOptions are:
         Add Date Task  - Add event
         Del Date Event - Delete event
         Del Date       - Delete all events for a specific date
@@ -13,6 +12,7 @@ def help_task():
         StartApp       - Command to start working with the task tracker
         Quit           - Сommand to exit the task tracker"""
     return message
+
 
 def add_task(command):
     """Add a new task.
@@ -33,6 +33,7 @@ def add_task(command):
             return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
     else:
         return "Incorrect command entered. Try again."
+
 
 def del_task(command):
     """A function to mark a task as completed.
@@ -62,6 +63,7 @@ def del_task(command):
     else:
         return "Incorrect command entered. Try again."
 
+
 def find_task(command):
     """This function displays all outstanding tasks for the specified date."""
     if len(command) == 2:
@@ -79,6 +81,7 @@ def find_task(command):
     else:
         return "Incorrect command entered. Try again."
 
+
 def print_task(command):
     """Returns all unfinished tasks for all dates."""
     if len(command) == 1:
@@ -86,10 +89,12 @@ def print_task(command):
     else:
         return "Incorrect command entered. Try again."
 
+
 def quit_task():
     """This function returns a message when the task tracker is finished."""
     message = """The task tracker has ended. To re-enter, enter 'StartApp'.\nTo exit the program, enter 'Quit'."""
     return message
+
 
 def validate_date(msg: str):
     """Check if the given string is a date."""
