@@ -5,9 +5,9 @@ Task tracker uses a database SQLile3.
 ***
 
 **Available CLI commands:**<br>
-  --show_current  Show all current not completed tasks
-  --show_done     Show all current completed tasks
-  --database      Path to the used database
+  1. --show_current  Show all current not completed tasks
+  2. --show_done     Show all current completed tasks
+  3. --database      Path to the used database
 
 **Task tracker commands available:**<br>
   1. Add Date Task  - Add event
