@@ -1,12 +1,15 @@
+"""This unit is for testing the 'Task' class."""
 import sqlite3
 import unittest
-from task import Task
+from model.task import Task
 
 
 class TestTask(unittest.TestCase):
+    """This class is for testing the 'Task' class."""
     conn = sqlite3.connect('db.sqlite3')
     cur = conn.cursor()
-    query_create = 'CREATE TABLE IF NOT EXISTS test_tasks (id INTEGER PRIMARY KEY, date TEXT, task TEXT, done TEXT)'
+    query_create = 'CREATE TABLE IF NOT EXISTS test_tasks ' \
+                   '(id INTEGER PRIMARY KEY, date TEXT, task TEXT, done TEXT)'
     cur.execute(query_create)
 
     Task.__tablename__ = 'test_tasks'
@@ -17,6 +20,8 @@ class TestTask(unittest.TestCase):
     task5 = Task("2020-10-05", "5")
 
     def test_get_date(self):
+        """This function is for testing a method that returns the
+        '__date' attribute of the 'task' class."""
         self.assertEqual(TestTask.task1.get_date(), "2020-10-01")
         self.assertEqual(TestTask.task2.get_date(), "2020-10-02")
         self.assertEqual(TestTask.task3.get_date(), "2020-10-03")
@@ -24,6 +29,8 @@ class TestTask(unittest.TestCase):
         self.assertEqual(TestTask.task5.get_date(), "2020-10-05")
 
     def test_get_event(self):
+        """This function is for testing a method that returns the
+        '__event' attribute of the 'task' class."""
         self.assertEqual(TestTask.task1.get_event(), "1")
         self.assertEqual(TestTask.task2.get_event(), "2")
         self.assertEqual(TestTask.task3.get_event(), "3")
@@ -31,6 +38,8 @@ class TestTask(unittest.TestCase):
         self.assertEqual(TestTask.task5.get_event(), "5")
 
     def test_save(self):
+        """This function is for testing the method that saves the
+        object to the database"""
         TestTask.task1.save()
         TestTask.task2.save()
         TestTask.task3.save()
@@ -43,6 +52,8 @@ class TestTask(unittest.TestCase):
             self.assertEqual(answer, (f'2020-10-0{i}', f'{i}'))
 
     def test_z_find_task(self):
+        """This function is for testing the method that finds the object
+        in the database."""
         self.assertEqual(Task.find_task("2020-10-01")[0].get_date(), "2020-10-01")
         self.assertEqual(Task.find_task("2020-10-02")[0].get_date(), "2020-10-02")
         self.assertEqual(Task.find_task("2020-10-03")[0].get_date(), "2020-10-03")
@@ -51,7 +62,9 @@ class TestTask(unittest.TestCase):
 
         self.assertEqual(len(Task.find_task()), 5)
 
-    def test_zz_delete(self):
+    @staticmethod
+    def test_zz_delete():
+        """This function deletes the created table for testing."""
         conn = sqlite3.connect('db.sqlite3')
         cur = conn.cursor()
         query_delete = f"DROP TABLE IF EXISTS {Task.__tablename__}"

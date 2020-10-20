@@ -1,3 +1,4 @@
+"""This module consists of a Task class for working with events."""
 import sqlite3
 from collections import defaultdict
 
@@ -87,7 +88,7 @@ class Task:
 
         exist = False
         query_select = f"SELECT * FROM {cls.__tablename__} WHERE date='{date}' and task='{event}'"
-        for row in cur.execute(query_select):
+        for _ in cur.execute(query_select):
             exist = True
         conn.close()
         return exist
