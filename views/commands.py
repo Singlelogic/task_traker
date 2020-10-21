@@ -1,5 +1,15 @@
+"""This module contents internal commands."""
 from model.task import Task
 
+
+def validate_date(msg: str):
+    """Check if the given string is a date."""
+    msg = msg.split('-')
+    if len(msg) == 3:
+        if (len(msg[0]) == 4) and (len(msg[1]) == 2) and (len(msg[2]) == 2):
+            if (int(msg[1]) <= 12) and (int(msg[2]) <= 31):
+                return ''.join(msg).isdecimal()
+    return False
 
 def help_task():
     """This function returns a list of available task tracker commands."""
@@ -27,12 +37,9 @@ def add_task(command):
                 new_task = Task(command[1], event)
                 new_task.save()
                 return "Task added successfully."
-            else:
-                return "This task already exists in the database."
-        else:
-            return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
-    else:
-        return "Incorrect command entered. Try again."
+            return "This task already exists in the database."
+        return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
+    return "Incorrect command entered. Try again."
 
 
 def del_task(command):
@@ -48,20 +55,16 @@ def del_task(command):
                 if Task.is_exist_task(command[1], event):
                     Task.change_status_task(command[1], event)
                     return "Deleted successfully"
-                else:
-                    return "Event not found"
+                return "Event not found"
+            amount_task_found = len(Task.find_task(command[1]))
+            Task.change_status_task(command[1])
+            if amount_task_found > 1:
+                end_word_event = 's'
             else:
-                amount_task_found = len(Task.find_task(command[1]))
-                Task.change_status_task(command[1])
-                if amount_task_found > 1:
-                    end_word_event = 's'
-                else:
-                    end_word_event = ''
-                return f"Deleted {amount_task_found} event{end_word_event}"
-        else:
-            return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
-    else:
-        return "Incorrect command entered. Try again."
+                end_word_event = ''
+            return f"Deleted {amount_task_found} event{end_word_event}"
+        return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
+    return "Incorrect command entered. Try again."
 
 
 def find_task(command):
@@ -74,12 +77,9 @@ def find_task(command):
                 tasks.append(task.get_event())
             if tasks:
                 return '\n'.join(sorted(tasks))
-            else:
-                return "No events found for this date."
-
+            return "No events found for this date."
         return "Invalid date entered. The date format is YYYY-MM-DD. Try again."
-    else:
-        return "Incorrect command entered. Try again."
+    return "Incorrect command entered. Try again."
 
 
 def print_task(command):
@@ -88,22 +88,12 @@ def print_task(command):
         tasks = Task.formatted_tasks_output()
         if tasks:
             return tasks
-        else:
-            return "Incomplete tasks not found"
-    else:
-        return "Incorrect command entered. Try again."
+        return "Incomplete tasks not found"
+    return "Incorrect command entered. Try again."
 
 
 def quit_task():
     """This function returns a message when the task tracker is finished."""
-    message = """The task tracker has ended. To re-enter, enter 'StartApp'.\nTo exit the program, enter 'Quit'."""
+    message = "The task tracker has ended. To re-enter, enter 'StartApp'." + \
+              "\nTo exit the program, enter 'Quit'."
     return message
-
-
-def validate_date(msg: str):
-    """Check if the given string is a date."""
-    msg = msg.split('-')
-    if len(msg) == 3:
-        if (len(msg[0]) == 4) and (len(msg[1]) == 2) and (len(msg[2]) == 2):
-            if (int(msg[1]) <= 12) and (int(msg[2]) <= 31):
-                return ''.join(msg).isdecimal()

@@ -1,3 +1,4 @@
+"""This module contents 'Command Line Interface'"""
 import os
 from model.task import Task
 
@@ -9,8 +10,7 @@ def show_current():
     tasks = Task.formatted_tasks_output()
     if tasks:
         return tasks
-    else:
-        return "Incomplete tasks not found"
+    return "Incomplete tasks not found"
 
 
 def show_done():
@@ -20,8 +20,7 @@ def show_done():
     tasks = Task.formatted_tasks_output(done='yes')
     if tasks:
         return tasks
-    else:
-        return "Complete tasks not found"
+    return "Complete tasks not found"
 
 
 def path_database():
@@ -30,5 +29,4 @@ def path_database():
     path_db = base_dir + '/db.sqlite3'
     if os.path.exists(path_db):
         return path_db
-    else:
-        return "Database does not exist."
+    return "Database does not exist."
