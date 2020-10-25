@@ -1,13 +1,13 @@
 """This module contents 'Command Line Interface'"""
 import os
-from model.task import Task
+from views.commands import formatted_tasks_output
 
 
 def show_current():
     """The method returns a formatted string of not completed tasks,
     in the date: task format, one event per line.
     """
-    tasks = Task.formatted_tasks_output()
+    tasks = formatted_tasks_output()
     if tasks:
         return tasks
     return "Incomplete tasks not found"
@@ -17,7 +17,7 @@ def show_done():
     """The method returns a formatted string of completed tasks,
     in the date: task format, one event per line
     """
-    tasks = Task.formatted_tasks_output(done='yes')
+    tasks = formatted_tasks_output(done='Yes')
     if tasks:
         return tasks
     return "Complete tasks not found"
