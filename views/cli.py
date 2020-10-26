@@ -3,7 +3,7 @@ import os
 from views.commands import formatted_tasks_output
 
 
-def show_current():
+def cli_show_current():
     """The method returns a formatted string of not completed tasks,
     in the date: task format, one event per line.
     """
@@ -13,7 +13,7 @@ def show_current():
     return "Incomplete tasks not found"
 
 
-def show_done():
+def cli_show_done():
     """The method returns a formatted string of completed tasks,
     in the date: task format, one event per line
     """

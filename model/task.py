@@ -1,4 +1,4 @@
-"""This module consists of a Task class for working with events."""
+"""This module consists of a Task class for working with tasks."""
 from sqlalchemy import create_engine
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
@@ -8,9 +8,7 @@ Base = declarative_base()
 
 
 class Task(Base):
-    """This class is used for adding tasks, changing their state,
-    and searching for.
-    """
+    """This class is used to work with tasks."""
     __tablename__ = 'tasks'
 
     id = Column(Integer, primary_key=True)
