@@ -6,46 +6,6 @@ from views.commands import (
 )
 
 
-def task_tracker_commands():
-    """Task tracker commands."""
-    command = ''
-    print("Enter 'StartApp' to start working with the task tracker ('Quit' - to exit):")
-
-    while command != 'Quit':
-        command = input('> ')
-
-        if command == 'StartApp':
-            print("Welcome to the task tracker!\nEnter 'Quit' to quit the task tracker. "
-                  "For help enter 'Help'.")
-            _exit = False
-            while not _exit:
-                commands = input('> ').strip().split('\n')
-                for command in commands:
-                    command = command.split()
-                    if command:
-                        if command[0] == 'Help':
-                            print(help_task())
-
-                        elif command[0] == 'Add':
-                            print(add_task(command))
-
-                        elif command[0] == 'Del':
-                            print(del_task(command))
-
-                        elif command[0] == 'Find':
-                            print(find_task(command))
-
-                        elif command[0] == 'Print':
-                            print(print_task(command))
-
-                        elif command[0] == 'Quit':
-                            print(quit_task())
-                            _exit = True
-
-                    if _exit:
-                        break
-
-
 @click.command()
 @click.option('--show_current', is_flag=True, help='Show all current not completed tasks')
 @click.option('--show_done', is_flag=True, help='Show all current completed tasks')
@@ -62,6 +22,44 @@ def main(show_current, show_done, database):
     else:
         # Task tracker commands
         task_tracker_commands()
+
+
+def task_tracker_commands():
+    """Task tracker commands. Entry point to the "task tracker."""
+    command = ''
+    print("Enter 'StartApp' to start working with the task tracker ('Quit' - to exit):")
+
+    while command != 'Quit':
+        command = input('> ')
+        if command == 'StartApp':
+            start_app()
+
+
+def start_app():
+    """Getting started with task tracker."""
+    print("Welcome to the task tracker!\nEnter 'Quit' to quit the task tracker. "
+          "For help enter 'Help'.")
+    _exit = False
+    while not _exit:
+        commands = input('> ').strip().split('\n')
+        for command in commands:
+            command = command.split()
+            if command:
+                if command[0] == 'Help':
+                    print(help_task())
+                elif command[0] == 'Add':
+                    print(add_task(command))
+                elif command[0] == 'Del':
+                    print(del_task(command))
+                elif command[0] == 'Find':
+                    print(find_task(command))
+                elif command[0] == 'Print':
+                    print(print_task(command))
+                elif command[0] == 'Quit':
+                    print(quit_task())
+                    _exit = True
+            if _exit:
+                break
 
 
 if __name__ == "__main__":
