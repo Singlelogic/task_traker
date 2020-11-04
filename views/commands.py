@@ -14,7 +14,7 @@ def validate_date(msg: str):
     msg = msg.split('-')
     if len(msg) == 3:
         if (len(msg[0]) == 4) and (len(msg[1]) == 2) and (len(msg[2]) == 2):
-            if (int(msg[1]) <= 12) and (int(msg[2]) <= 31):
+            if (0 < int(msg[1]) <= 12) and (0 < int(msg[2]) <= 31):
                 return ''.join(msg).isdecimal()
     return False
 
