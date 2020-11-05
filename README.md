@@ -1,7 +1,5 @@
-.. image:: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master.png
-    :target: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master
-
-:target: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master
+.. image:: https://travis-ci.org/Singlelogic/task_traker.png
+    :target: https://travis-ci.org/Singlelogic/task_traker
 
 # Task traker
 A personal task recorder that communicates with the user via standard I/O streams.
