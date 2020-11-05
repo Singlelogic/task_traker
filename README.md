@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master.png
+    :target: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master
+
 :target: https://travis-ci.org/Singlelogic/task_traker.svg?branch=master
 
 # Task traker
