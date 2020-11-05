@@ -19,9 +19,9 @@ def validate_date(msg: str):
     return False
 
 
-def is_exist_task(date: str, event: str) -> bool:
+def is_exist_task(session_db, date: str, event: str) -> bool:
     """Check if a task exists on a given date in the database."""
-    query = session.query(Task).filter_by(date=date, event=event)
+    query = session_db.query(Task).filter_by(date=date, event=event)
     if query.first():
         return True
     return False
@@ -66,7 +66,7 @@ def add_task(command):
     if len(command) >= 3:
         if validate_date(command[1]):
             event = ' '.join(command[2:])
-            if not is_exist_task(command[1], event):
+            if not is_exist_task(session, command[1], event):
                 new_task = Task(date=command[1], event=event, done='No')
                 session.add(new_task)
                 session.commit()
@@ -86,7 +86,7 @@ def del_task(command):
         if validate_date(command[1]):
             if len(command) > 2:
                 event = ' '.join(command[2:])
-                if is_exist_task(command[1], event):
+                if is_exist_task(session, command[1], event):
                     query = session.query(Task).filter_by(date=command[1], event=event)
                     task = query.first()
                     task.done = 'Yes'
